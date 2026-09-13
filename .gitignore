@@ -1,0 +1,54 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Tooling caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Optional large raw dumps (keep directory via .gitkeep)
+data/raw/**
+!data/raw/.gitkeep
+data/snapshots/**
+!data/snapshots/.gitkeep
+
+# Local experiment outputs (optional ignore of bulky artifacts)
+artifacts/experiments/**
+!artifacts/experiments/.gitkeep
+artifacts/reports/**
+!artifacts/reports/.gitkeep
+!artifacts/reports/FINAL_VERDICT.md

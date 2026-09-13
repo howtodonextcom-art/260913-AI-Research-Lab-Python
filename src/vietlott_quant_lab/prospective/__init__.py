@@ -1,0 +1,71 @@
+"""Prospective freeze / score hash-chain (P10)."""
+
+from vietlott_quant_lab.prospective.chain import (
+    ChainIntegrityError,
+    append_freeze,
+    append_score,
+    compute_record_hash,
+    freezes_path,
+    load_freezes,
+    load_scores,
+    scores_path,
+    verify_chain,
+    verify_freeze_chain,
+    verify_score_chain,
+)
+from vietlott_quant_lab.prospective.freeze import (
+    DEFAULT_PROTOCOL,
+    ProspectiveFreezeError,
+    compute_feature_hash,
+    compute_model_hash,
+    compute_protocol_hash,
+    freeze_ranking,
+    next_draw_id,
+)
+from vietlott_quant_lab.prospective.score import (
+    ProspectiveScoreError,
+    build_score_event,
+    pending_freezes,
+    score_pending,
+    scored_views,
+)
+from vietlott_quant_lab.prospective.types import (
+    FREEZES_FILENAME,
+    GENESIS_HASH,
+    SCORES_FILENAME,
+    ProspectiveRecord,
+    ScoreEvent,
+    with_score,
+)
+
+__all__ = [
+    "DEFAULT_PROTOCOL",
+    "FREEZES_FILENAME",
+    "GENESIS_HASH",
+    "SCORES_FILENAME",
+    "ChainIntegrityError",
+    "ProspectiveFreezeError",
+    "ProspectiveRecord",
+    "ProspectiveScoreError",
+    "ScoreEvent",
+    "append_freeze",
+    "append_score",
+    "build_score_event",
+    "compute_feature_hash",
+    "compute_model_hash",
+    "compute_protocol_hash",
+    "compute_record_hash",
+    "freeze_ranking",
+    "freezes_path",
+    "load_freezes",
+    "load_scores",
+    "next_draw_id",
+    "pending_freezes",
+    "score_pending",
+    "scored_views",
+    "scores_path",
+    "verify_chain",
+    "verify_freeze_chain",
+    "verify_score_chain",
+    "with_score",
+]
