@@ -50,17 +50,18 @@ with left:
     c2.metric("gap_z", f"{fv.gap_z:.3f}")
     c3.metric("momentum_short", f"{fv.momentum_short:.4f}")
     c4.metric("shrinkage", f"{fv.shrinkage_signal:.4f}")
-    st.json(
-        {
-            "freq": fv.freq,
-            "z_freq": fv.z_freq,
-            "mean_reversion_score": fv.mean_reversion_score,
-            "stability": fv.stability,
-            "pair_signal": fv.pair_signal,
-            "rank": ranking.number_to_rank().get(int(number)),
-            "score": ranking.number_to_score().get(int(number)),
-        }
-    )
+    with st.expander(labels.ADVANCED_DEBUG):
+        st.json(
+            {
+                "freq": fv.freq,
+                "z_freq": fv.z_freq,
+                "mean_reversion_score": fv.mean_reversion_score,
+                "stability": fv.stability,
+                "pair_signal": fv.pair_signal,
+                "rank": ranking.number_to_rank().get(int(number)),
+                "score": ranking.number_to_score().get(int(number)),
+            }
+        )
 
 with right:
     st.subheader(labels.HISTORY)

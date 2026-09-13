@@ -37,7 +37,11 @@ Official vietlott.vn may return **403** from some cloud egress IPs. The app must
 
 ## CI
 
-- `.github/workflows/ci.yml` — install, ruff, mypy (non-blocking while stubs remain), pytest; **no** live fetch.
+- `.github/workflows/ci.yml` — two jobs:
+  - `test` — install, ruff, **mypy (blocking, strict)**, pytest; **no** live fetch.
+  - `browser-e2e` — installs Chromium, runs `tests/browser` (real Playwright + Chromium
+    against a locally-started `streamlit run app.py` server, local canonical data only);
+    uploads screenshots as a build artifact.
 - `.github/workflows/live-source-check.yml` — manual (`workflow_dispatch`) and optional schedule; read-only probe via `scripts/live_source_check.py`.
 
 ## Environment

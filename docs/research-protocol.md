@@ -2,6 +2,11 @@
 
 This lab registers **hashable** research protocols. Changing any methodological field changes the protocol hash; experiment artifacts must pin that hash.
 
+> **Note:** this `protocol_hash` (from `research/protocol.py`'s `ResearchProtocol`) is a
+> separate domain from the `protocol_hash` recorded on prospective freeze records, which
+> hashes its own `DEFAULT_PROTOCOL` object in `prospective/freeze.py`. See
+> [prospective.md](prospective.md) for details — the two are expected to differ.
+
 ## Chronological split (50 / 25 / 25)
 
 Draws are ordered by time (`draw_id` / `draw_date`). **Never shuffle.**

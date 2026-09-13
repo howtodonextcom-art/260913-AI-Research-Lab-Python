@@ -43,7 +43,12 @@ The old Python donor’s `if not fresh: break` EOF pattern is **forbidden**.
 
 ## Local artifacts
 
-- Immutable raw snapshots: `data/raw/` (content hash + timestamp; never overwrite).
+- Sync audit markers: `data/raw/` (content hash + timestamp; never overwrite). **Note:**
+  today this stores a lightweight per-sync marker (`sync:{mode}:fetched={count}`), not the
+  raw HTTP/AjaxPro response bodies returned by `crawl_full`/`crawl_incremental` — those
+  bytes are parsed in `data/client.py` and discarded. This is a known audit-trail gap
+  (a corrupted parse cannot currently be re-verified against the exact page it came from);
+  persisting genuine raw response bodies is a tracked follow-up, not yet implemented.
 - Canonical draws: `data/processed/draws_mega645.parquet`.
 - Manifest + DuckDB sync state: `data/manifests/`.
 - Merge conflicts: reconcile JSON under `data/snapshots/` (canonical not overwritten).

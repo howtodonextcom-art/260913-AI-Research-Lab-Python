@@ -52,3 +52,5 @@ artifacts/experiments/**
 artifacts/reports/**
 !artifacts/reports/.gitkeep
 !artifacts/reports/FINAL_VERDICT.md
+!artifacts/reports/BASELINE_AUDIT.md
+!artifacts/reports/BROWSER_ACCEPTANCE.md

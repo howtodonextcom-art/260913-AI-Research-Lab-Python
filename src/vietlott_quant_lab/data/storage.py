@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import duckdb
 import pandas as pd
@@ -57,12 +57,12 @@ def dataframe_to_draws(df: pd.DataFrame) -> list[DrawRecord]:
                 draw_id=str(row.draw_id).zfill(5),
                 draw_date=date.fromisoformat(str(row.draw_date)[:10]),
                 numbers=(
-                    int(row.n1),
-                    int(row.n2),
-                    int(row.n3),
-                    int(row.n4),
-                    int(row.n5),
-                    int(row.n6),
+                    int(cast(int, row.n1)),
+                    int(cast(int, row.n2)),
+                    int(cast(int, row.n3)),
+                    int(cast(int, row.n4)),
+                    int(cast(int, row.n5)),
+                    int(cast(int, row.n6)),
                 ),
                 source_url=str(row.source_url),
                 fetched_at=fetched_at,

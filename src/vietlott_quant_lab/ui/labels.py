@@ -53,6 +53,7 @@ SCORE_NOT_PROBABILITY: Final[str] = (
     "Cột **Score** là tín hiệu xếp hạng (ranking signal), **không** phải probability."
 )
 NO_NETWORK_RERUN: Final[str] = "UI không gọi mạng mỗi lần rerun — chỉ đọc snapshot/artifact local."
+ADVANCED_DEBUG: Final[str] = "Advanced / Debug (raw)"
 
 # --- Overview ---
 SCIENTIFIC_VERDICT: Final[str] = "Scientific Verdict"
@@ -108,7 +109,7 @@ TOP_M_NUMBERS: Final[str] = "Top-m numbers"
 # --- Tournament ---
 TOURNAMENT_WINNER: Final[str] = "Winner (từ engine)"
 DEVELOPMENT: Final[str] = "Development"
-VALIDATION: Final[str] = "Validation"
+# VALIDATION is shared with the Data Library section above (same label text).
 TEST: Final[str] = "Test"
 HOLDOUT_STATUS: Final[str] = "Holdout status"
 

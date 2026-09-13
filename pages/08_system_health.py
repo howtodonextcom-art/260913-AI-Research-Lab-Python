@@ -46,15 +46,17 @@ for name, value in rows:
     st.write(f"**{name}:** `{value}`")
 
 st.subheader("Chi tiết")
-st.write(
-    {
-        labels.DATASET_HASH: health.dataset_hash,
-        labels.DRAW_COUNT: health.record_count,
-        labels.LAST_SYNC: health.last_sync,
-        labels.VALIDATION: health.validation_status,
-        "integrity_issues": list(health.integrity_issues[:10]),
-    }
-)
+detail_rows = [
+    (labels.DATASET_HASH, health.dataset_hash),
+    (labels.DRAW_COUNT, health.record_count),
+    (labels.LAST_SYNC, health.last_sync),
+    (labels.VALIDATION, health.validation_status),
+]
+for name, value in detail_rows:
+    st.write(f"**{name}:** `{value}`")
+if health.integrity_issues:
+    with st.expander(labels.ADVANCED_DEBUG):
+        st.json({"integrity_issues": list(health.integrity_issues[:10])})
 
 if health.integrity_ok is False:
     st.error(labels.STATUS_FAIL)

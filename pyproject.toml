@@ -31,6 +31,9 @@ dev = [
     "hypothesis",
     "ruff",
     "mypy",
+    "pandas-stubs",
+    "playwright",
+    "pytest-playwright",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -42,6 +45,11 @@ include = ["src/vietlott_quant_lab"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src", "."]
+# Real-browser tests spin up a live Streamlit server + Chromium; they are excluded
+# from the default recursive discovery (kept as a separate CI stage) but still run
+# when targeted explicitly: `pytest tests/browser`.
+norecursedirs = [".*", "build", "dist", "CVS", "_darcs", "{arch}", "*.egg", "venv", "tests/browser"]
+markers = ["browser: real-Chromium Streamlit E2E tests (slow, needs a live server)"]
 
 [tool.ruff]
 target-version = "py312"
@@ -58,5 +66,5 @@ mypy_path = "src"
 packages = ["vietlott_quant_lab"]
 
 [[tool.mypy.overrides]]
-module = ["streamlit.*", "plotly.*"]
+module = ["streamlit.*", "plotly.*", "pyarrow.*"]
 ignore_missing_imports = true

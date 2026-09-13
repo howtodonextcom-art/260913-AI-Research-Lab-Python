@@ -173,7 +173,7 @@ def sync_official(
     # Full replace after force: still merge for conflict detection against existing.
     # Integrity: full history must be continuous from #00001 once we claim full.
     require_cont = mode == "full" or (
-        existing and existing[0].draw_id == "00001" if existing else False
+        bool(existing) and existing[0].draw_id == "00001"
     )
     # Prefer continuity whenever the merged set starts at 00001.
     if merge.merged and merge.merged[0].draw_id == "00001":

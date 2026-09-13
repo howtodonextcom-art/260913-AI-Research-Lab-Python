@@ -12,6 +12,15 @@ Before the target draw:
 - `dataset_sha256`, `protocol_hash`, model/feature hashes
 - Target `draw_id` (future) and freeze timestamp
 
+> **Note on `protocol_hash`:** this is *not* the same value as the `protocol_hash` recorded
+> in tournament experiment artifacts (`research/protocol.py`'s `ResearchProtocol`). Prospective
+> freezes hash their own `DEFAULT_PROTOCOL` object, defined in `prospective/freeze.py`, which
+> is a distinct, independently-registered protocol from the Round-1 tournament protocol
+> described in `research-protocol.md`. The two protocol-hash domains are expected to differ —
+> do not treat a mismatch between an experiment artifact's `protocol_hash` and a freeze
+> record's `protocol_hash` as a provenance break; compare each hash only within its own
+> domain (tournament artifacts against each other, freeze records against each other).
+
 ## Hash chain (append-only)
 
 Each record includes:

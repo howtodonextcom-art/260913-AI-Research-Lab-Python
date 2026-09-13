@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import pandas as pd
 import streamlit as st
 
 from vietlott_quant_lab.config.constants import POOL_SIZES
@@ -83,21 +84,38 @@ c2.metric(labels.RANDOM_MEAN_K, f"{nulls.mean_k:.4f}")
 c3.metric(labels.LIFT, f"{lift:+.4f}" if lift is not None else "—")
 c4.metric(labels.MCP, f"{mean_mcp:.2f}" if isinstance(mean_mcp, (int, float)) else "—")
 
-st.write(
+tail_rows = [
     {
-        labels.P4: {"null": nulls.p_ge_4, "empirical": emp_p4},
-        labels.P5: {"null": nulls.p_ge_5, "empirical": emp_p5},
-        labels.P6: {
-            "null_pmf": nulls.p_eq_6,
-            "bao_p6": bao_p6(int(pool_size)),
-            "empirical": emp_p6,
-        },
-        labels.EVIDENCE: evidence,
-        "tickets": tickets(int(pool_size)),
-        "cost_vnd": cost(int(pool_size)),
-    }
-)
+        "Metric": labels.P4,
+        "Null (exact)": f"{nulls.p_ge_4:.6f}",
+        "Empirical": f"{emp_p4:.6f}" if isinstance(emp_p4, (int, float)) else "—",
+    },
+    {
+        "Metric": labels.P5,
+        "Null (exact)": f"{nulls.p_ge_5:.6f}",
+        "Empirical": f"{emp_p5:.6f}" if isinstance(emp_p5, (int, float)) else "—",
+    },
+    {
+        "Metric": labels.P6,
+        "Null (exact)": f"{nulls.p_eq_6:.6f}",
+        "Empirical": f"{emp_p6:.6f}" if isinstance(emp_p6, (int, float)) else "—",
+    },
+]
+st.dataframe(pd.DataFrame(tail_rows), use_container_width=True, hide_index=True)
+
+m1, m2, m3 = st.columns(3)
+m1.metric(labels.EVIDENCE, evidence)
+m2.metric("Bao tickets", f"{tickets(int(pool_size)):,}")
+m3.metric("Cost (VND)", f"{cost(int(pool_size)):,}")
 
 st.subheader(labels.TOP_M_NUMBERS)
 st.code(" ".join(f"{n:02d}" for n in pool))
 st.caption(labels.SCORE_NOT_PROBABILITY)
+
+with st.expander(labels.ADVANCED_DEBUG):
+    st.json(
+        {
+            "null_p6_pmf": nulls.p_eq_6,
+            "bao_p6_identity": bao_p6(int(pool_size)),
+        }
+    )
