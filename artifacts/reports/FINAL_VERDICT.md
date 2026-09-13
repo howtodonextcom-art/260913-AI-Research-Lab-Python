@@ -9,7 +9,7 @@ or explicit inability to verify).
 | Field | Value |
 | --- | --- |
 | Starting SHA (audit baseline) | `ac7a597a756b27ddb04a06fd9388324bd1108689` |
-| Ending SHA | `audit/p4-p10-algorithm-upgrade` tip after P4–P10 commit (see `git log -1 --oneline`) |
+| Ending SHA | `34a74659c093d332418a7ad7e83c4ac9f8a14d27` |
 | Branch | `audit/p4-p10-algorithm-upgrade` |
 | Worktree | clean after final commit of this pass |
 | Python | 3.14.4 local (CI pins 3.12) |
