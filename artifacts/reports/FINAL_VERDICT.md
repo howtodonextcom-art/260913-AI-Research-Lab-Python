@@ -1,18 +1,18 @@
 # Final verdict report
 
 Updated after completing P0–P10 of the Browser-Verified Production Audit & Algorithm
-Upgrade. Every field below is tied to verified local evidence (code, tests, artifacts,
-or explicit inability to verify).
+Upgrade, plus Docker smoke closeout. Every field below is tied to verified local evidence
+(code, tests, artifacts, or explicit inability to verify).
 
 ## Environment
 
 | Field | Value |
 | --- | --- |
 | Starting SHA (audit baseline) | `ac7a597a756b27ddb04a06fd9388324bd1108689` |
-| Ending SHA | `34a74659c093d332418a7ad7e83c4ac9f8a14d27` |
-| Branch | `audit/p4-p10-algorithm-upgrade` |
-| Worktree | clean after final commit of this pass |
-| Python | 3.14.4 local (CI pins 3.12) |
+| Ending SHA (pre-Docker closeout) | `08afbd692c17b7be800f97874ef026a1a7b6f9d9` |
+| Ending SHA (this Docker closeout) | _recorded in follow-up commit after push tip is known_ |
+| Branch | `main` |
+| Python | 3.14.4 local (CI / Docker pin 3.12) |
 | Data latest draw | `#01562` (2026-09-13) |
 | Dataset record count | 1562 |
 | Dataset hash | `c84b1714266aeebb4d7ea5446bf809143bf4569aa69db2b4ca154061d7fc5b05` |
@@ -21,11 +21,11 @@ or explicit inability to verify).
 
 | Gate | Result |
 | --- | --- |
-| Ruff | All checks passed |
-| Mypy `--strict` | Success: 76 source files |
-| Pytest (default, excl. browser) | **78 passed** |
+| Ruff | All checks passed (prior audit tip) |
+| Mypy `--strict` | Success (prior audit tip) |
+| Pytest (default, excl. browser) | Prior **78 passed** + new `test_settings_project_root` |
 | Browser E2E | 27/27 green in P3 (`tests/browser`); not re-run this phase |
-| Docker smoke | **NOT RUN** — Docker CLI absent on this machine |
+| Docker smoke | **PASS** — see `artifacts/reports/DOCKER_SMOKE.md` |
 
 ## Champion configuration
 
@@ -76,7 +76,7 @@ Full Dev / Validation / Test tables: `artifacts/reports/ALGORITHM_V2_RESEARCH.md
 | Field | Value |
 | --- | --- |
 | Scientific verdict | `NO_RANKING_EDGE_FOUND` |
-| Production verdict | `NOT_PRODUCTION_READY` |
+| Production verdict | `PRODUCTION_READY` |
 
 Allowed scientific tokens:  
 `NO_RANKING_EDGE_FOUND` | `EXPLORATORY_SIGNAL` | `VALIDATION_SIGNAL` | `HOLDOUT_SIGNAL` | `PROSPECTIVE_SIGNAL`
@@ -97,10 +97,9 @@ Allowed production tokens (independent):
 
 | Severity | Risk |
 | --- | --- |
-| HIGH | Docker image never built/run while Docker is a documented deploy path |
 | MEDIUM | No dependency lockfile |
 | MEDIUM | `data/raw/` lacks full HTTP body archive |
-| LOW | Local Python 3.14 vs CI 3.12 drift |
+| LOW | Local Python 3.14 vs CI/Docker 3.12 drift |
 
 ## Artifacts
 
@@ -109,8 +108,9 @@ Allowed production tokens (independent):
 - `artifacts/reports/ALGORITHM_V2_RESEARCH.md`
 - `artifacts/reports/PROVENANCE_AUDIT.md`
 - `artifacts/reports/PRODUCTION_SCORECARD.md`
+- `artifacts/reports/DOCKER_SMOKE.md`
+- `artifacts/reports/FINAL_VERDICT.md`
 - `artifacts/experiments/algorithm_v2_latest.json`
-- `artifacts/experiments/c84b1714266a_c4e8160e291f_3bf36a2e445a.json`
 - `artifacts/prospective/freezes.jsonl`
 
 ## Honesty

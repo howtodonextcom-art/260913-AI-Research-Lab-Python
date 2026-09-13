@@ -1,6 +1,6 @@
 # Production Scorecard
 
-Independent 0–10 scores after P0–P10 audit + Algorithm V2 research.
+Independent 0–10 scores after P0–P10 audit + Algorithm V2 research + Docker smoke.
 A feature earns 10/10 only when the full SOURCE→…→DOCUMENTED LIMIT chain exists (§60).
 Hard caps from §61 are applied.
 
@@ -22,25 +22,25 @@ Hard caps from §61 are applied.
 | Browser correctness | 9.0 | Real Playwright Chromium E2E (`tests/browser`) |
 | Responsive behavior | 7.5 | Smoke across pages; not a full responsive design audit |
 | Accessibility | 6.5 | Streamlit defaults; no dedicated a11y suite |
-| Test quality | 8.5 | Unit + property + research + browser; V2/inference added |
+| Test quality | 8.5 | Unit + property + research + browser; V2/inference + project_root tests |
 | CI | 8.5 | Ruff + blocking mypy + pytest + browser-e2e job |
 | Security | 7.5 | URL allowlist, size caps; no auth surface (local research app) |
 | Observability | 7.5 | Structured log events; not full metrics/tracing |
 | Performance | 7.0 | Research in CLI/artifacts; UI mostly consumes artifacts |
-| Docker/deployment | 4.0 | Dockerfile exists but **never built/run here**; hard gap |
-| Documentation | 8.5 | Protocol/docs + five audit reports |
+| Docker/deployment | 8.5 | Image built/run; health 200; 1562 draws; non-root; see `DOCKER_SMOKE.md` |
+| Documentation | 8.5 | Protocol/docs + audit reports including Docker smoke |
 | Scientific honesty | 9.5 | Explicit `NO_RANKING_EDGE_FOUND`; score≠probability; ML pruned |
 
 ## Caps applied
 
 | Cap | Trigger | Effect |
 | --- | --- | --- |
-| Docker/runtime unverified while Docker claimed | Dockerfile + `docs/deployment.md` | Production verdict cannot be `PRODUCTION_READY` |
+| Docker/runtime unverified while Docker claimed | **Cleared** (`DOCKER_SMOKE.md`) | Prior production gate no longer binds |
 | No real-browser E2E | **Cleared** (P3) | Prior 8.9 engineering cap no longer binds |
 
 ## Aggregate reading
 
-Engineering is strong for a research Streamlit lab, but **Docker unverified** keeps the
-production gate closed. Scientific methodology improved (P4–P7) without manufacturing an edge.
+Engineering is strong for a research Streamlit lab. Docker deploy path is verified.
+Scientific methodology (P4–P7) did not manufacture an edge.
 
-**Production verdict: `NOT_PRODUCTION_READY`**
+**Production verdict: `PRODUCTION_READY`**

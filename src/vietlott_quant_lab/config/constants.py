@@ -65,5 +65,16 @@ REPORTS_DIR_NAME: Final[str] = "reports"
 
 
 def default_project_root() -> Path:
-    """Workspace root: parents[3] from this file (src/vietlott_quant_lab/config/)."""
-    return Path(__file__).resolve().parents[3]
+    """Resolve workspace root for editable/src trees and installed packages.
+
+    Under ``src/vietlott_quant_lab/config/``, parents[3] is the repo root.
+    After ``pip install`` (Docker), that walk lands under site-packages — fall
+    back to the process CWD when it looks like the app workspace (``app.py``).
+    """
+    candidate = Path(__file__).resolve().parents[3]
+    if (candidate / "app.py").is_file():
+        return candidate
+    cwd = Path.cwd()
+    if (cwd / "app.py").is_file():
+        return cwd
+    return candidate

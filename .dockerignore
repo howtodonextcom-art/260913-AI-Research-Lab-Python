@@ -35,9 +35,12 @@ artifacts/experiments/**
 !artifacts/experiments/.gitkeep
 artifacts/prospective/**
 !artifacts/prospective/.gitkeep
-# Keep report templates in the image; ignore bulky generated reports if added later
+# Keep canonical processed draws in the image; drop other parquet/duckdb noise
 *.parquet
+!data/processed/
+!data/processed/**/*.parquet
 *.duckdb
+!data/manifests/
 MASTER PROMPT*
 agent-transcripts
 terminals

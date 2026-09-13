@@ -22,14 +22,20 @@ docker build -t vietlott-quant-lab .
 docker run --rm -p 8501:8501 vietlott-quant-lab
 ```
 
+If Docker Desktop is installed to a custom path on Windows (not Program Files), put its CLI on `PATH` first, e.g. `D:\DockerDesktop\resources\bin`.
+
 Image details:
 
 - Base: `python:3.12-slim`
+- `PROJECT_ROOT=/app` so installed package code resolves `data/` / `artifacts/` under `/app`
 - Non-root user `labuser` (uid 10001)
 - `HEALTHCHECK` imports `vietlott_quant_lab`
 - `CMD`: `streamlit run app.py --server.port=8501 --server.address=0.0.0.0`
+- Canonical `data/processed/*.parquet` + manifests are included for offline UI smoke
 
 Mount `data/` and `artifacts/` as volumes in production if you need durable snapshots outside the image layers.
+
+Smoke evidence: `artifacts/reports/DOCKER_SMOKE.md`.
 
 ## Streamlit Cloud / Cloudflare
 

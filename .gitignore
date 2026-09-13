@@ -58,3 +58,4 @@ artifacts/reports/**
 !artifacts/reports/ALGORITHM_V2_RESEARCH.md
 !artifacts/reports/PROVENANCE_AUDIT.md
 !artifacts/reports/PRODUCTION_SCORECARD.md
+!artifacts/reports/DOCKER_SMOKE.md
