@@ -10,7 +10,7 @@ Upgrade, plus Docker smoke closeout. Every field below is tied to verified local
 | --- | --- |
 | Starting SHA (audit baseline) | `ac7a597a756b27ddb04a06fd9388324bd1108689` |
 | Ending SHA (pre-Docker closeout) | `08afbd692c17b7be800f97874ef026a1a7b6f9d9` |
-| Ending SHA (this Docker closeout) | _recorded in follow-up commit after push tip is known_ |
+| Ending SHA (this Docker closeout) | `5e3c1321bf073891726e9d620f892484d0675a0c` |
 | Branch | `main` |
 | Python | 3.14.4 local (CI / Docker pin 3.12) |
 | Data latest draw | `#01562` (2026-09-13) |
