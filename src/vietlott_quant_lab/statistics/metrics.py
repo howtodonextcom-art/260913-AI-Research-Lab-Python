@@ -81,3 +81,27 @@ def empirical_tail_rate(ks: Sequence[int], threshold: int) -> float:
     if not ks:
         return 0.0
     return sum(1 for k in ks if k >= threshold) / len(ks)
+
+
+def mean_winner_rank(ranks: Sequence[int]) -> float:
+    """Mean of the six winner ranks for one draw (or pooled ranks)."""
+    if not ranks:
+        return 0.0
+    return sum(ranks) / len(ranks)
+
+
+def median_winner_rank(ranks: Sequence[int]) -> float:
+    if not ranks:
+        return 0.0
+    ordered = sorted(ranks)
+    n = len(ordered)
+    mid = n // 2
+    if n % 2 == 1:
+        return float(ordered[mid])
+    return (ordered[mid - 1] + ordered[mid]) / 2.0
+
+
+def mcp_le_rate(mcps: Sequence[int], m: int) -> float:
+    if not mcps:
+        return 0.0
+    return sum(1 for x in mcps if x <= m) / len(mcps)

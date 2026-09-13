@@ -49,8 +49,12 @@ data/snapshots/**
 # Local experiment outputs (optional ignore of bulky artifacts)
 artifacts/experiments/**
 !artifacts/experiments/.gitkeep
+!artifacts/experiments/algorithm_v2_latest.json
 artifacts/reports/**
 !artifacts/reports/.gitkeep
 !artifacts/reports/FINAL_VERDICT.md
 !artifacts/reports/BASELINE_AUDIT.md
 !artifacts/reports/BROWSER_ACCEPTANCE.md
+!artifacts/reports/ALGORITHM_V2_RESEARCH.md
+!artifacts/reports/PROVENANCE_AUDIT.md
+!artifacts/reports/PRODUCTION_SCORECARD.md

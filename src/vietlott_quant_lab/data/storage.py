@@ -75,7 +75,7 @@ def write_canonical_parquet(path: Path, records: list[DrawRecord]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     df = draws_to_dataframe(records)
     table = pa.Table.from_pandas(df, preserve_index=False)
-    pq.write_table(table, path)
+    pq.write_table(table, path)  # type: ignore[no-untyped-call]
     log_event(logger, "canonical_parquet_written", path=str(path), rows=len(records))
     return path
 
@@ -83,7 +83,7 @@ def write_canonical_parquet(path: Path, records: list[DrawRecord]) -> Path:
 def load_canonical_parquet(path: Path) -> list[DrawRecord]:
     if not path.exists():
         return []
-    table = pq.read_table(path)
+    table = pq.read_table(path)  # type: ignore[no-untyped-call]
     df = table.to_pandas()
     return dataframe_to_draws(df)
 

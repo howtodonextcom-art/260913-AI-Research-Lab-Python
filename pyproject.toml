@@ -59,6 +59,9 @@ src = ["src", "tests", "scripts"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
 
+[tool.ruff.lint.per-file-ignores]
+"scripts/generate_v2_report.py" = ["E501"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true
