@@ -64,9 +64,25 @@ CANDIDATE_POOL_SECTION: Final[str] = "Candidate Pool"
 DRAW_COUNT: Final[str] = "Số kỳ"
 FIRST_DRAW: Final[str] = "Kỳ đầu"
 LATEST_DRAW: Final[str] = "Kỳ mới nhất"
+LAST_DRAW_DATE: Final[str] = "Ngày dữ liệu cuối"
 LAST_SYNC: Final[str] = "Last sync"
 SOURCE: Final[str] = "Source"
 DATASET_HASH: Final[str] = "Dataset hash"
+UPDATE_DATA: Final[str] = "Cập nhật dữ liệu"
+UPDATE_DATA_HELP: Final[str] = (
+    "Đồng bộ incremental từ vietlott.vn (official). "
+    "Không tự chạy trên mỗi rerun. Cập nhật dữ liệu ≠ tăng khả năng trúng."
+)
+UPDATE_DATA_BLOCKED: Final[str] = (
+    "Live fetch từ UI đang tắt (`VIETLOTT_ALLOW_LIVE_FETCH=0`). "
+    "Chạy CLI: `python -m scripts.sync_official` rồi bấm Rerun / mở lại trang."
+)
+UPDATE_DATA_CLI: Final[str] = (
+    "Hoặc cập nhật bằng CLI: `python -m scripts.sync_official` "
+    "(full: thêm `--force`)."
+)
+DATASET_BANNER_EMPTY: Final[str] = "Chưa có dataset local."
+DEFAULT_PRODUCTION_VERDICT: Final[str] = "PRODUCTION_READY"
 BEST_MODEL: Final[str] = "Best model"
 BEST_WINDOW: Final[str] = "Best window"
 EVIDENCE_LEVEL: Final[str] = "Evidence level"
@@ -147,5 +163,4 @@ STATUS_MISSING: Final[str] = "MISSING"
 STATUS_OK: Final[str] = "OK"
 STATUS_LOCAL_ONLY: Final[str] = "LOCAL_ONLY"
 
-DEFAULT_PRODUCTION_VERDICT: Final[str] = "NOT_PRODUCTION_READY"
 DEFAULT_SCIENTIFIC_VERDICT: Final[str] = "NO_RANKING_EDGE_FOUND"

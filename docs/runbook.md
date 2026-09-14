@@ -14,6 +14,10 @@ Operational cheatsheet for maintainers. This lab does **not** predict Vietlott.
 
 ## Data sync (when client exists)
 
+**UI:** Home / Tổng quan / System Health → **Cập nhật dữ liệu** (incremental; gated by `VIETLOTT_ALLOW_LIVE_FETCH`).
+
+**CLI:**
+
 ```bash
 python -m scripts.sync_official
 ```

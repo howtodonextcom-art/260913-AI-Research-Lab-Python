@@ -37,6 +37,8 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     http_timeout_seconds: float = 30.0
     http_request_delay_ms: int = 400
+    # When false, UI still shows "Cập nhật dữ liệu" but refuses live crawl (CLI only).
+    vietlott_allow_live_fetch: bool = True
 
     @property
     def data_dir(self) -> Path:

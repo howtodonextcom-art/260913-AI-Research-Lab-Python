@@ -7,11 +7,14 @@ import streamlit as st
 from vietlott_quant_lab import __version__
 from vietlott_quant_lab.config.constants import PARSER_VERSION
 from vietlott_quant_lab.ui import labels
+from vietlott_quant_lab.ui.dataset_panel import render_dataset_status_panel
 from vietlott_quant_lab.ui.loaders import build_system_health, list_experiment_artifacts
 
 st.set_page_config(page_title=f"{labels.PAGE_SYSTEM_HEALTH} · Vietlott Quant Lab", layout="wide")
 st.title(labels.PAGE_SYSTEM_HEALTH)
 st.caption(labels.HEALTH_UNKNOWN_NETWORK)
+
+render_dataset_status_panel(key_prefix="health")
 
 health = build_system_health(app_version=__version__)
 artifacts = list_experiment_artifacts()
@@ -42,6 +45,7 @@ rows = [
     (labels.APP_VERSION, health.app_version),
 ]
 
+st.subheader("Health checks")
 for name, value in rows:
     st.write(f"**{name}:** `{value}`")
 
@@ -49,6 +53,8 @@ st.subheader("Chi tiết")
 detail_rows = [
     (labels.DATASET_HASH, health.dataset_hash),
     (labels.DRAW_COUNT, health.record_count),
+    (labels.LAST_DRAW_DATE, health.last_draw_date),
+    (labels.LATEST_DRAW, health.last_draw_id),
     (labels.LAST_SYNC, health.last_sync),
     (labels.VALIDATION, health.validation_status),
 ]

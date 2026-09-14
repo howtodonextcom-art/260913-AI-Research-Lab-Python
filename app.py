@@ -6,7 +6,8 @@ import streamlit as st
 
 from vietlott_quant_lab import __version__
 from vietlott_quant_lab.ui import labels
-from vietlott_quant_lab.ui.loaders import list_experiment_artifacts, load_dataset_bundle
+from vietlott_quant_lab.ui.dataset_panel import render_dataset_status_panel
+from vietlott_quant_lab.ui.loaders import list_experiment_artifacts
 
 st.set_page_config(
     page_title=labels.APP_TITLE,
@@ -36,16 +37,9 @@ Dùng menu multipage (`pages/`):
 """
 )
 
-bundle = load_dataset_bundle()
+bundle = render_dataset_status_panel(key_prefix="home")
 artifacts = list_experiment_artifacts()
-
-c1, c2, c3 = st.columns(3)
-c1.metric(labels.DRAW_COUNT, len(bundle.draws))
-c2.metric(
-    labels.LATEST_DRAW,
-    bundle.manifest.last_draw_id if bundle.manifest else "—",
-)
-c3.metric(labels.EXPERIMENT_ARTIFACTS, len(artifacts))
+st.metric(labels.EXPERIMENT_ARTIFACTS, len(artifacts))
 
 st.markdown(
     """
@@ -59,8 +53,8 @@ Phòng thí nghiệm **định lượng** cho Mega 6/45:
 
 ## Trạng thái
 
-**P11 — Streamlit UI** đã nối 8 trang tới services/artifacts.
-Research dài chạy qua CLI; UI chỉ **đọc** kết quả đã ghi.
+**Streamlit UI** nối 8 trang tới services/artifacts.
+Research dài chạy qua CLI; UI đọc kết quả đã ghi và có thể **Cập nhật dữ liệu** (incremental sync).
 
 ```text
 python -m scripts.sync_official
@@ -73,11 +67,5 @@ python -m scripts.freeze_prospective
 
 if not bundle.draws:
     st.info(labels.MISSING_DATASET)
-else:
-    hash_short = (bundle.dataset_hash[:12] + "…") if bundle.dataset_hash else "—"
-    st.success(
-        f"Dataset local: `{len(bundle.draws)}` kỳ · hash `{hash_short}` · "
-        f"validation `{bundle.manifest.validation_status if bundle.manifest else 'UNKNOWN'}`"
-    )
 
 st.caption(labels.NO_NETWORK_RERUN)

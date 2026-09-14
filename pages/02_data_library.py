@@ -49,6 +49,8 @@ df = _draws_frame(bundle.dataset_hash, rows)
 integrity = _integrity_summary(bundle.dataset_hash, len(bundle.draws))
 
 st.write(
+    f"**{labels.LAST_DRAW_DATE}:** `{m.last_draw_date if m else '—'}` · "
+    f"**{labels.LATEST_DRAW}:** `#{m.last_draw_id if m else '—'}` · "
     f"**{labels.INTEGRITY}:** "
     f"`{labels.STATUS_PASS if integrity['ok'] else labels.STATUS_FAIL}` · "
     f"**{labels.VALIDATION}:** `{m.validation_status if m else 'UNKNOWN'}` · "

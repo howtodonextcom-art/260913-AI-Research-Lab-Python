@@ -48,6 +48,17 @@ streamlit run app.py
 
 Pages under `pages/` appear in the Streamlit sidebar. UI reads local services/artifacts; it does not crawl vietlott.vn on each rerun.
 
+On **Home**, **Tổng quan**, and **System Health** you will see:
+
+- **Ngày dữ liệu cuối** + kỳ mới nhất (`#draw_id`)
+- Button **Cập nhật dữ liệu** — incremental official sync (or a clear message if `VIETLOTT_ALLOW_LIVE_FETCH=0`)
+
+Equivalent CLI:
+
+```bash
+python -m scripts.sync_official
+```
+
 ## Tests and CI
 
 ```bash

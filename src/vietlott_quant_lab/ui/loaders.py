@@ -93,6 +93,8 @@ class SystemHealth:
     record_count: int
     last_sync: str | None
     validation_status: str | None
+    last_draw_id: str | None = None
+    last_draw_date: str | None = None
 
 
 def _settings(settings: Settings | None = None) -> Settings:
@@ -342,4 +344,10 @@ def build_system_health(
         record_count=manifest.record_count if manifest else len(bundle.draws),
         last_sync=manifest.last_sync if manifest else None,
         validation_status=manifest.validation_status if manifest else None,
+        last_draw_id=manifest.last_draw_id if manifest else (
+            bundle.draws[-1].draw_id if bundle.draws else None
+        ),
+        last_draw_date=manifest.last_draw_date if manifest else (
+            bundle.draws[-1].draw_date.isoformat() if bundle.draws else None
+        ),
     )
